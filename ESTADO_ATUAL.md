@@ -36,7 +36,7 @@ O projeto é um protótipo standalone/offline concentrado em `index.html`:
 
 - CSS, dados de demonstração e JavaScript ficam no mesmo arquivo;
 - o estado é persistido em `localStorage`;
-- não há backend, package manager ou suíte de browser tests configurada;
+- não há backend nem suíte de browser tests configurada; há scripts Node em `package.json`;
 - `RECUPERACAO_V1_V2.md` contém a matriz resumida V1 × V2;
 - `tests/modules-functional.test.js` é um smoke test Node, não um teste E2E real.
 
@@ -94,13 +94,13 @@ O smoke test valida:
 
 A implementação **não deve ser considerada pronta para produção** pelos seguintes motivos:
 
-1. `tests/modules-functional.test.js` inspeciona dados e trechos do bundle; ele não abre a interface nem dispara eventos reais.
+1. `tests/modules-functional.test.js` executa renderizadores e a conversão tópico→tarefa, mas ainda não abre um navegador real.
 2. Falta teste E2E em navegador para navegação, modais, criação, conversão, recarga e persistência.
-3. A regressão dos módulos protegidos é apenas estrutural; faltam operações funcionais de cada módulo.
+3. A regressão dos módulos protegidos ainda é majoritariamente estrutural; faltam operações funcionais de cada módulo.
 4. Não há screenshot ou artefato visual comprovando as telas recuperadas.
 5. Anexos binários, links internos autenticados e PDF assinado dependem de backend/armazenamento.
 6. A descrição anterior do PR alegou “manual rendering checks”, mas não há evidência versionada; não repetir essa afirmação sem executar e registrar a validação.
-7. Verificar cuidadosamente migração/importação: após importar dados antigos, as novas coleções precisam ser normalizadas também. A normalização atual ocorre na inicialização, mas `importDemo` substitui `D` sem reaplicar explicitamente todas as normalizações.
+7. A normalização pós-importação foi corrigida e possui teste com base legada artificial 2.2; falta validá-la no seletor de arquivo de um navegador real.
 8. Revisar validação de campos vazios, exclusão/edição, estados vazios e permissões para todos os novos recursos.
 9. O arquivo monolítico dificulta manutenção; não faça refatoração ampla sem comparar o comportamento V1 e sem testes de caracterização.
 
@@ -108,19 +108,18 @@ A implementação **não deve ser considerada pronta para produção** pelos seg
 
 1. Confirmar Git e criar uma branch de desenvolvimento real a partir do commit atual; não trabalhar na `main`.
 2. Ler o histórico disponível e obter a V1 original, se houver remoto/artefato, para fazer comparação de código e não apenas de requisitos.
-3. Corrigir a normalização pós-importação e adicionar testes para base legada.
-4. Adicionar testes E2E com Playwright ou ferramenta equivalente:
+3. Adicionar testes E2E com Playwright ou ferramenta equivalente:
    - criar reunião e tópico;
    - converter tópico em tarefa e impedir duplicidade;
    - criar documento/revisão/link/nota/aviso;
    - emitir relatório semanal/mensal/anual;
    - recarregar e confirmar persistência;
    - importar/exportar base artificial TESTE.
-5. Exercitar fluxos críticos de RDO, Efetivo, EPI, Equipamentos, Tarefas, Ocorrências, Alertas, NFs e Medições.
-6. Executar testes por perfis com e sem permissão.
-7. Gerar screenshots das três áreas após testes de navegador.
-8. Atualizar `RECUPERACAO_V1_V2.md` com evidências, resultados e pendências.
-9. Commitar tudo na branch de desenvolvimento e criar/atualizar PR **em rascunho**, sem merge.
+4. Exercitar fluxos críticos de RDO, Efetivo, EPI, Equipamentos, Tarefas, Ocorrências, Alertas, NFs e Medições.
+5. Executar testes por perfis com e sem permissão.
+6. Gerar screenshots das três áreas após testes de navegador.
+7. Atualizar `RECUPERACAO_V1_V2.md` com evidências, resultados e pendências.
+8. Commitar tudo na branch de desenvolvimento e criar/atualizar PR **em rascunho**, sem merge.
 
 ## 8. Critério de encerramento sugerido
 

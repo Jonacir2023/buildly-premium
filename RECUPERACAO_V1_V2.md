@@ -12,3 +12,8 @@ Todos os dados de validação são artificiais e identificados como **TESTE**.
 
 - Anexos binários e links internos autenticados exigem backend/armazenamento.
 - PDF assinado no servidor exige integração backend; impressão nativa permanece disponível.
+
+## Validação local
+
+- `npm test` executa os renderizadores dos três módulos, a conversão idempotente de tópico em tarefa, a migração artificial 2.2 → 2.3, a persistência e guardas dos módulos protegidos.
+- Teste E2E e evidência visual continuam pendentes até haver navegador headless disponível no ambiente.

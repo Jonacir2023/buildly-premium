@@ -1,0 +1,9 @@
+{
+  "name": "buildly-premium-offline",
+  "version": "2.3.0",
+  "private": true,
+  "scripts": {
+    "test": "node tests/modules-functional.test.js",
+    "check": "node --check tests/modules-functional.test.js && npm test"
+  }
+}
